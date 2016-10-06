@@ -15,7 +15,7 @@ export function fetchWeather() {
           });
         }
       ))
-      .catch((err) => {
+      .catch ((err) => {
         dispatch({
           type: 'FETCH_WEATHER_REJECTED',
           payload: err,

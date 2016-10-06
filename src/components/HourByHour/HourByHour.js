@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux'
 //import TableRow from'../TableRow/TableRow'
 
 
-export default class HourByHour extends Component {
+class HourByHour extends Component {
   componentWillMount () {
     fetchWeather();
   }
@@ -19,9 +19,9 @@ export default class HourByHour extends Component {
       "ОПАДИ",
       "ВОЛ-СТЬ",
       "ВІТЕР"
-    ].map((title, i) => <TableHead key = {i} tableData={title}/>);
+    ].map((title, i) =>  <TableHead key = {i} tableData={title}/>);
 
-    console.log(this.props.hourlyWeather );
+    console.log(this.props);
     return (
       <div className="col-xs-8 col-md-8 well well-sm">
         <h1 >погодинно</h1>
@@ -41,8 +41,10 @@ const TableHead = (props)=> {
 
 };
 
-function mapStateToProps() {
-  return {}
+function mapStateToProps(state) {
+  return {
+    hourByHour: state.hourByHour
+  }
 }
 
 function mapDispatchToProps(dispatch) {
@@ -51,4 +53,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
- connect(mapStateToProps, mapDispatchToProps) (HourByHour);
+export default connect(mapStateToProps, mapDispatchToProps) (HourByHour);
