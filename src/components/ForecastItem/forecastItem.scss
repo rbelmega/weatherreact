@@ -1,0 +1,11 @@
+
+$base-bg-color: rgb(31, 67, 113);
+
+.forecastItem {
+  height: 200px;
+  color: #fff;
+  font: bold small-caps Arial, sans-serif;
+}
+.base-bg {
+  background-color: $base-bg-color;
+}
