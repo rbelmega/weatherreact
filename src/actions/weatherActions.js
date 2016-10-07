@@ -6,20 +6,21 @@ const HOURLY_URL = 'https://api.weather.com/v2/turbo/vt1hourlyForecast?units=m&l
 export function fetchWeather() {
   console.log("fetchWeather");
   return  function (dispatch) {
-    console.log(dispatch);
-    return fetch (HOURLY_URL)
+    return  fetch (HOURLY_URL)
       .then((response => {
-          dispatch({
+        console.log(response);
+         return dispatch({
             type: 'FETCH_WEATHER_FULLFIELD',
-            payload: response.data,
+            payload: response,
           });
         }
       ))
-      .catch ((err) => {
-        dispatch({
+      .catch((err) => {
+        console.log(err);
+       return  dispatch({
           type: 'FETCH_WEATHER_REJECTED',
           payload: err,
-        });
+        })
       })
   }
 }

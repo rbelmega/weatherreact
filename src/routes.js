@@ -9,11 +9,11 @@ import TravelForecast from './components/TravelForecast/TravelForecast'
 
 export const routes = (
   <div>
-    <Route path='/' component={Layout}>
+    <Route path="/" component={Layout}>
       <IndexRoute component={HourByHour}/>
-      <Route path='today' component={SoonWeather}/>
-      <Route path='days' component={DaysForecast}/>
-      <Route path='travel' component={TravelForecast}/>
+      <Route path="today" component={SoonWeather}/>
+      <Route path="days" component={DaysForecast}/>
+      <Route path="travel" component={TravelForecast}/>
     </Route>
   </div>
 )

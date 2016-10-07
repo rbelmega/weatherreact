@@ -19,7 +19,7 @@ const initialState = {
   }
 };
 
-export default function hourByHour (state = initialState, action) {
+export default function hourByHour (state = {}, action) {
 
   switch (action.type) {
     case 'FETCH_WEATHER': {

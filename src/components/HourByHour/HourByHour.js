@@ -3,14 +3,29 @@ import { connect } from "react-redux";
 import * as weatherActions from '../../actions/weatherActions';
 import { fetchWeather }from '../../actions/weatherActions';
 import { bindActionCreators } from 'redux'
+import { asyncConnect } from 'redux-async-connect';
 //import TableRow from'../TableRow/TableRow'
 
-
-class HourByHour extends Component {
-  componentWillMount () {
-    fetchWeather();
+function mapStateToProps(state) {
+  return {
+    hourByHour: state.hourByHour
   }
+}
 
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(weatherActions, dispatch)
+  }
+}
+
+@asyncConnect([{
+  deferred: true,
+  promise: ({store: {dispatch}}) => {
+      return dispatch(fetchWeather());
+  }
+}])
+@connect(mapStateToProps, mapDispatchToProps)
+export default class HourByHour extends Component {
   render () {
     const tableHeads = [
       "ЧАС",
@@ -38,19 +53,4 @@ class HourByHour extends Component {
 
 const TableHead = (props)=> {
   return <th>{props.tableData}</th>
-
 };
-
-function mapStateToProps(state) {
-  return {
-    hourByHour: state.hourByHour
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(weatherActions, dispatch)
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps) (HourByHour);

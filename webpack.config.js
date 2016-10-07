@@ -9,6 +9,15 @@ module.exports = {
     devtool: debug ? "inline-sourcemap" : null,
     entry: "./index.js",
     module: {
+        preLoaders: [
+            {
+                test: /\.js$/,
+                loaders: ['eslint'],
+                include: [
+                    path.resolve(__dirname, "src"),
+                ],
+            }
+        ],
         loaders: [
             {
                 test: /\.jsx?$/,
