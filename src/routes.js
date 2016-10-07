@@ -3,7 +3,7 @@ import { Route, IndexRoute } from 'react-router'
 
 import Layout from "./components/Layout/Layout";
 import SoonWeather from './components/SoonWeather/SoonWeather'
-import HourByHour from './components/HourByHour/HourByHour'
+import HourByHour from './components/HourByHour'
 import DaysForecast from './components/DaysForecast/DaysForecast'
 import TravelForecast from './components/TravelForecast/TravelForecast'
 

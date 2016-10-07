@@ -1,43 +1,19 @@
-import React, { Component } from 'react';
-import { connect } from "react-redux";
-import * as weatherActions from '../../actions/weatherActions';
-import { fetchWeather }from '../../actions/weatherActions';
-import { bindActionCreators } from 'redux'
-import { asyncConnect } from 'redux-async-connect';
-//import TableRow from'../TableRow/TableRow'
+import React  from 'react';
 
-function mapStateToProps(state) {
-  return {
-    hourByHour: state.hourByHour
-  }
-}
+const HourByHour = ({ hourlyWeather }) => {
+  const tableHeads = [
+    "ЧАС",
+    "ОПИС",
+    "ТЕМП",
+    "ОПАДИ",
+    "ВОЛ-СТЬ",
+    "ВІТЕР"
+  ].map((title, i) =>  <TableHead key = {i} tableData={title}/>);
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(weatherActions, dispatch)
-  }
-}
+  console.log('hi there');
+  console.log(hourlyWeather);
 
-@asyncConnect([{
-  deferred: true,
-  promise: ({store: {dispatch}}) => {
-      return dispatch(fetchWeather());
-  }
-}])
-@connect(mapStateToProps, mapDispatchToProps)
-export default class HourByHour extends Component {
-  render () {
-    const tableHeads = [
-      "ЧАС",
-      "ОПИС",
-      "ТЕМП",
-      "ОПАДИ",
-      "ВОЛ-СТЬ",
-      "ВІТЕР"
-    ].map((title, i) =>  <TableHead key = {i} tableData={title}/>);
-
-    console.log(this.props);
-    return (
+  return (
       <div className="col-xs-8 col-md-8 well well-sm">
         <h1 >погодинно</h1>
         <table className="table table-hover ">
@@ -47,9 +23,10 @@ export default class HourByHour extends Component {
           <tbody> <tr>{  }</tr> </tbody>
         </table>
       </div>
-    )
-  }
-}
+  )
+};
+
+export  default HourByHour;
 
 const TableHead = (props)=> {
   return <th>{props.tableData}</th>
